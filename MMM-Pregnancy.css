@@ -1,0 +1,40 @@
+.pregnancy-table  {
+  text-align: center;
+}
+
+.pregnancy-table tr td {
+  width: 2em;
+}
+
+.pregnancy-table tr td.digits {
+  color: #ee5486;
+}
+
+.pregnancy-table tr.textsRow {
+  font-size: 19px;
+  color: #FFF;
+}
+
+.pregnancy-table tr td.none {
+  display: none;
+}
+
+.MMM-Pregnancy .pregnancy {
+  position: relative;
+}
+
+.MMM-Pregnancy .pregnancy:after {
+  content: "\f21e"; 
+  font-family: "Font Awesome\ 5 Free";
+  font-style: normal;
+  font-weight: 900;
+  text-decoration: inherit;
+  font-size: 300px;
+  opacity: 0.2;
+  color: pink;
+}
+
+.date {
+  font-size: 15px;
+  text-align: center;
+}
