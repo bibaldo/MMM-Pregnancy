@@ -224,7 +224,7 @@ Module.register("MMM-Pregnancy", {
         duedate = new Date(),
         today = new Date(),
         cycle = 28,
-        luteal = 14;
+        luteal = 13;
     
     menstrualinput = new Date(this.config.date);
     menstrual.setTime(menstrualinput.getTime());
