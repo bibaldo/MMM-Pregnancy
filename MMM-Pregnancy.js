@@ -137,15 +137,15 @@ Module.register("MMM-Pregnancy", {
       trimesterTrim = trimesterInfo.trim,
       trimesterPercent = trimesterInfo.percent;
 
-    if (trimesterTrim == 1) {
+    if (trimesterTrim === 1) {
       t1Bar = trimesterPercent; // calculate where of the 1st trimester we are
       t2Bar = 0; // not yet
       t3Bar = 0; // not yet
-    } else if (trimesterTrim == 2) {
+    } else if (trimesterTrim === 2) {
       t1Bar = 100; // completed
       t2Bar = trimesterPercent; // calculate where of the 2nd trimester we are
       t3Bar = 0; // not yet
-    } else if (trimesterTrim == 3) {
+    } else if (trimesterTrim === 3) {
       t1Bar = 100; // completed
       t2Bar = 100; // completed
       t3Bar = trimesterPercent; // calculate where of the 3rd trimester we are
@@ -232,8 +232,7 @@ Module.register("MMM-Pregnancy", {
       today = new Date(),
       cycle = 28,
       luteal = 13;
-    console.log("pregnancyCalc called");
-    menstrualinput = new Date(this.config.date);
+    var menstrualinput = new Date(this.config.date);
     menstrual.setTime(menstrualinput.getTime());
 
     ovulation.setTime(
@@ -246,8 +245,8 @@ Module.register("MMM-Pregnancy", {
     this.pregnancyResults.duedate = this.dispDate(duedate);
 
     var fetalage = 14 + 266 - (duedate - today) / 86400000;
-    weeks = parseInt(fetalage / 7);
-    days = Math.floor(fetalage % 7);
+    const weeks = parseInt(fetalage / 7);
+    const days = Math.floor(fetalage % 7);
 
     this.pregnancyResults.fetalage.weeks = weeks;
     this.pregnancyResults.fetalage.days = days;
@@ -256,13 +255,13 @@ Module.register("MMM-Pregnancy", {
   },
 
   dispDate: function (dateObj) {
-    month = dateObj.getMonth() + 1;
+    var month = dateObj.getMonth() + 1;
     month = month < 10 ? "0" + month : month;
 
-    day = dateObj.getDate();
+    var day = dateObj.getDate();
     day = day < 10 ? "0" + day : day;
 
-    year = dateObj.getYear();
+    var year = dateObj.getYear();
     if (year < 2000) year += 1900;
 
     if (this.config.USDateFormat) return month + "/" + day + "/" + year;
