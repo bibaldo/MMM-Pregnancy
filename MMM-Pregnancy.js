@@ -11,7 +11,7 @@ Module.register("MMM-Pregnancy", {
   pregnancyResults: {
     conception: "",
     duedate: "",
-    fetalage: {
+    fetalAge: {
       weeks: "",
       days: ""
     }
@@ -67,14 +67,14 @@ Module.register("MMM-Pregnancy", {
   getPregnancyInfo: function () {
     var today = new Date();
 
-    var fetalage =
+    var fetalAge =
       14 + 266 - (this.pregnancyResults.duedate - today) / 86400000;
 
-    const weeks = parseInt(fetalage / 7);
-    const days = Math.floor(fetalage % 7);
+    const weeks = parseInt(fetalAge / 7);
+    const days = Math.floor(fetalAge % 7);
 
-    this.pregnancyResults.fetalage.weeks = weeks;
-    this.pregnancyResults.fetalage.days = days;
+    this.pregnancyResults.fetalAge.weeks = weeks;
+    this.pregnancyResults.fetalAge.days = days;
 
     var counterWrapper = document.createElement("div");
     var wrapper = document.createElement("table");
@@ -141,7 +141,7 @@ Module.register("MMM-Pregnancy", {
     var t1Bar,
       t2Bar,
       t3Bar,
-      weekNr = this.pregnancyResults.fetalage.weeks,
+      weekNr = this.pregnancyResults.fetalAge.weeks,
       trimesterInfo = this.trimesterCalc(weekNr),
       trimesterTrim = trimesterInfo.trim,
       trimesterPercent = trimesterInfo.percent;
@@ -233,7 +233,7 @@ Module.register("MMM-Pregnancy", {
 
     return res;
   },
-  // calculate conception date, due date and fetalage (weeks + days)
+  // calculate conception date, due date and fetalAge (weeks + days)
   pregnancyCalc: function () {
     var menstrual = new Date(),
       ovulation = new Date(),
