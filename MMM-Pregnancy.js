@@ -250,7 +250,10 @@ Module.register("MMM-Pregnancy", {
     var conception = this.dispDate(ovulation);
     this.pregnancyResults.conception = conception;
 
-    duedate.setTime(ovulation.getTime() + 266 * 86400000);
+    var numberOfDaysInPregnancy = 266;
+    var numberOfMiliSecondsInPregnancy =
+      numberOfDaysInPregnancy * 24 * 60 * 60 * 1000;
+    duedate.setTime(ovulation.getTime() + numberOfMiliSecondsInPregnancy);
     this.pregnancyResults.duedate = duedate;
 
     return false;
