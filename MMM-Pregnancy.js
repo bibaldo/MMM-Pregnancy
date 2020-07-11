@@ -65,9 +65,16 @@ Module.register("MMM-Pregnancy", {
   },
 
   getPregnancyInfo: function () {
-    this.pregnancyCalc();
-    var weekNr = this.pregnancyResults.fetalage.weeks,
-      dayNr = this.pregnancyResults.fetalage.days;
+    var today = new Date();
+
+    var fetalage =
+      14 + 266 - (this.pregnancyResults.duedate - today) / 86400000;
+
+    const weeks = parseInt(fetalage / 7);
+    const days = Math.floor(fetalage % 7);
+
+    this.pregnancyResults.fetalage.weeks = weeks;
+    this.pregnancyResults.fetalage.days = days;
 
     var counterWrapper = document.createElement("div");
     var wrapper = document.createElement("table");
@@ -79,9 +86,9 @@ Module.register("MMM-Pregnancy", {
       weeksWrapper = document.createElement("td"),
       daysWrapper = document.createElement("td");
 
-    weeksWrapper.innerHTML = weekNr;
+    weeksWrapper.innerHTML = weeks;
     weeksWrapper.className = "digits";
-    daysWrapper.innerHTML = dayNr;
+    daysWrapper.innerHTML = days;
     daysWrapper.className = "digits";
 
     infoRow.appendChild(weeksWrapper);
@@ -123,7 +130,9 @@ Module.register("MMM-Pregnancy", {
     dueDateWrapper.className = "date";
 
     dueDateWrapper.innerHTML =
-      this.translate("The due date is") + " " + this.pregnancyResults.duedate;
+      this.translate("The due date is") +
+      " " +
+      this.dispDate(this.pregnancyResults.duedate);
 
     return dueDateWrapper;
   },
@@ -229,7 +238,6 @@ Module.register("MMM-Pregnancy", {
     var menstrual = new Date(),
       ovulation = new Date(),
       duedate = new Date(),
-      today = new Date(),
       cycle = 28,
       luteal = 13;
     var menstrualinput = new Date(this.config.date);
@@ -238,18 +246,12 @@ Module.register("MMM-Pregnancy", {
     ovulation.setTime(
       menstrual.getTime() + cycle * 86400000 - luteal * 86400000
     );
+
     var conception = this.dispDate(ovulation);
     this.pregnancyResults.conception = conception;
 
     duedate.setTime(ovulation.getTime() + 266 * 86400000);
-    this.pregnancyResults.duedate = this.dispDate(duedate);
-
-    var fetalage = 14 + 266 - (duedate - today) / 86400000;
-    const weeks = parseInt(fetalage / 7);
-    const days = Math.floor(fetalage % 7);
-
-    this.pregnancyResults.fetalage.weeks = weeks;
-    this.pregnancyResults.fetalage.days = days;
+    this.pregnancyResults.duedate = duedate;
 
     return false;
   },
