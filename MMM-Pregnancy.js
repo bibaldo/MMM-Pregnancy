@@ -30,7 +30,8 @@ Module.register("MMM-Pregnancy", {
   getTranslations: function() {
     return {
       en: "translations/en.json",
-      es: "translations/es.json"
+      es: "translations/es.json",
+      sv: "translations/sv.json"
     }
   },
 
