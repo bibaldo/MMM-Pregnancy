@@ -202,17 +202,21 @@ Module.register("MMM-Pregnancy", {
       res.trim = 1;
       if (weekNr >= 1 && weekNr <=4 ) res.percent = 25;
       else if (weekNr >= 5 && weekNr <=8 ) res.percent = 50;
-      else res.percent = 75;
+      else if (weekNr > 8 && weekNr <13 ) res.percent = 75;
+      else res.percent = 95;
     } else if (weekNr > 13 && weekNr <=27) {
       res.trim = 2;
       if (weekNr >= 14 && weekNr <=17 ) res.percent = 25;
       else if (weekNr >= 18 && weekNr <=21 ) res.percent = 50;
-      else res.percent = 75;
+      else if (weekNr > 21 && weekNr <27 ) res.percent = 75;
+      else res.percent = 95;
     } else if (weekNr > 27) {
       res.trim = 3;
-      if (weekNr >= 27 && weekNr <=30 ) res.percent = 25;
-      else if (weekNr >= 31 && weekNr <=35 ) res.percent = 50;
-      else res.percent = 75;
+      if (weekNr >= 27 && weekNr <=29 ) res.percent = 25;
+      else if (weekNr >= 30 && weekNr <=33 ) res.percent = 50;
+      else if (weekNr >= 34 && weekNr <=36) res.percent = 75;
+      else if (weekNr >= 37 && weekNr <=38 ) res.percent = 95;
+      else res.percent = 100;
     }
 
     return res;
@@ -238,7 +242,7 @@ Module.register("MMM-Pregnancy", {
 
     var fetalage = 14 + 266 - ((duedate - today) / 86400000);
     weeks = parseInt(fetalage / 7);
-    days = Math.floor(fetalage % 7);
+    days = Math.ceil(fetalage % 7);
 
     this.pregnancyResults.fetalage.weeks = weeks;
     this.pregnancyResults.fetalage.days = days;
