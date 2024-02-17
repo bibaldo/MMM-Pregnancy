@@ -29,6 +29,7 @@ Module.register("MMM-Pregnancy", {
 
   getTranslations: function() {
     return {
+      de: "translations/de.json",
       en: "translations/en.json",
       es: "translations/es.json",
       sv: "translations/sv.json"
